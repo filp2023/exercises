@@ -1,0 +1,58 @@
+image: "hseeberger/scala-sbt:17.0.1_1.6.1_2.13.7"
+
+variables:
+  SBT_VERSION: "1.6.1"
+  SBT_OPTS: "-Dsbt.global.base=sbt-cache/.sbtboot -Dsbt.boot.directory=sbt-cache/.boot -Dsbt.ivy.home=sbt-cache/.ivy2 -Dcoursier.cache=sbt-cache/.cache"
+
+cache:
+  key: "$CI_PROJECT_NAME"
+  untracked: true
+  paths:
+    - "sbt-cache/.ivy2/cache"
+    - "sbt-cache/.boot"
+    - "sbt-cache/.sbt"
+    - "sbt-cache/.sbtboot"
+    - "sbt-cache/.cache/coursier"
+
+stages:
+  - test
+
+test:
+  script:
+    - export PROJECT_NAME="exercises01"
+    - export SCALAFIX=""
+    - if [ "$CI_COMMIT_REF_NAME" == "exercises02" ]; then
+    -   export PROJECT_NAME="exercises02"
+    - elif [ "$CI_COMMIT_REF_NAME" == "exercises03" ]; then
+    -   export PROJECT_NAME="exercises03"
+    -   export SCALAFIX="scalafix"
+    - elif [ "$CI_COMMIT_REF_NAME" == "exercises04" ]; then
+    -   export PROJECT_NAME="exercises04"
+    -   export SCALAFIX="scalafix"
+    - elif [ "$CI_COMMIT_REF_NAME" == "exercises05" ]; then
+    -   export PROJECT_NAME="exercises05"
+    -   export SCALAFIX="scalafix"
+    - elif [ "$CI_COMMIT_REF_NAME" == "exercises06" ]; then
+    -   export PROJECT_NAME="exercises06"
+    -   export SCALAFIX="scalafix"
+    - elif [ "$CI_COMMIT_REF_NAME" == "exercises07" ]; then
+    -   export PROJECT_NAME="exercises07"
+    -   export SCALAFIX="scalafix"
+    - elif [ "$CI_COMMIT_REF_NAME" == "exercises08" ]; then
+    -   export PROJECT_NAME="exercises08"
+    -   export SCALAFIX="scalafix"
+    - elif [ "$CI_COMMIT_REF_NAME" == "exercises09" ]; then
+    -   export PROJECT_NAME="exercises09"
+    -   export SCALAFIX="scalafix"
+    - elif [ "$CI_COMMIT_REF_NAME" == "exercises10" ]; then
+    -   export PROJECT_NAME="exercises10"
+    -   export SCALAFIX="scalafix"
+    - elif [ "$CI_COMMIT_REF_NAME" == "exercises11" ]; then
+    -   export PROJECT_NAME="exercises11"
+    -   export SCALAFIX="scalafix"
+    - elif [ "$CI_COMMIT_REF_NAME" == "exercises12" ]; then
+    -   export PROJECT_NAME="exercises12"
+    -   export SCALAFIX="scalafix"
+    - fi
+    - echo "Running build for $PROJECT_NAME"
+    - sbt "project $PROJECT_NAME" clean scalafmtCheck test:scalafmtCheck compile $SCALAFIX test
