@@ -29,10 +29,17 @@ class VectorTest extends org.scalatest.wordspec.AnyWordSpec {
 
     "support normalized operation" in {
       val vector = new Vector(10, -10).normalized
-      val sin = math.sin(math.Pi / 4)
+      val sin    = math.sin(math.Pi / 4)
 
       assert(Math.abs(vector.x - sin) <= error)
       assert(Math.abs(vector.y + sin) <= error)
+    }
+
+    "support normalized zero operation" in {
+      val vector = new Vector(0, 0).normalized
+
+      assert(vector.x == 0)
+      assert(vector.y == 0)
     }
 
     "support toString operation" in {
@@ -40,10 +47,10 @@ class VectorTest extends org.scalatest.wordspec.AnyWordSpec {
     }
 
     "support fromAngle operation" in {
-      val vector = Vector.fromAngle(math.Pi, 10)
+      val vector = Vector.fromAngle(math.Pi / 6, 10)
 
-      assert(Math.abs(vector.x + 10) <= error)
-      assert(Math.abs(vector.y) <= error)
+      assert(Math.abs(vector.x - 0.866 * 10) <= error)
+      assert(Math.abs(vector.y - 0.5 * 10) <= error)
     }
 
     "support sum operation" in {
