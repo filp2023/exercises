@@ -26,3 +26,4 @@ val kindProjectorDep = "org.typelevel" % "kind-projector" % "0.13.2" cross Cross
 
 // Добавляем пакеты по мере прохождения курса
 lazy val exercises01 = project in file("exercises01") settings (libraryDependencies ++= libraries)
+lazy val exercises02 = project in file("exercises02") settings (libraryDependencies ++= libraries)
