@@ -6,7 +6,7 @@ import scala.collection.mutable
 
 class GameTest extends org.scalatest.wordspec.AnyWordSpec {
   trait mocks {
-    val inQueue: mutable.Queue[String] = mutable.Queue.empty
+    val inQueue: mutable.Queue[String]  = mutable.Queue.empty
     val outQueue: mutable.Queue[String] = mutable.Queue.empty
 
     val testController: GameController = new GameController {
@@ -29,7 +29,7 @@ class GameTest extends org.scalatest.wordspec.AnyWordSpec {
   "Game" should {
     "ask number on start and end" in new mocks {
       override val inQueue: mutable.Queue[String] = mutable.Queue("2", "3")
-      val expectedOut: List[String] = List("ask", "guessed")
+      val expectedOut: List[String]               = List("ask", "guessed")
 
       new Game(testController).play(2)
 
@@ -39,7 +39,7 @@ class GameTest extends org.scalatest.wordspec.AnyWordSpec {
 
     "repeat ask" in new mocks {
       override val inQueue: mutable.Queue[String] = mutable.Queue("1", "3", "2")
-      val expectedOut: List[String] = List("ask", "big", "ask", "small", "ask", "guessed")
+      val expectedOut: List[String]               = List("ask", "big", "ask", "small", "ask", "guessed")
 
       new Game(testController).play(2)
 
@@ -49,7 +49,7 @@ class GameTest extends org.scalatest.wordspec.AnyWordSpec {
 
     "wrong input" in new mocks {
       override val inQueue: mutable.Queue[String] = mutable.Queue("1", "abc", "2")
-      val expectedOut: List[String] = List("ask", "big", "ask", "wrong", "ask", "guessed")
+      val expectedOut: List[String]               = List("ask", "big", "ask", "wrong", "ask", "guessed")
 
       new Game(testController).play(2)
 
@@ -59,7 +59,7 @@ class GameTest extends org.scalatest.wordspec.AnyWordSpec {
 
     "give up" in new mocks {
       override val inQueue: mutable.Queue[String] = mutable.Queue("1", IGiveUp, "2")
-      val expectedOut: List[String] = List("ask", "big", "ask", "giveUp 2")
+      val expectedOut: List[String]               = List("ask", "big", "ask", "giveUp 2")
 
       new Game(testController).play(2)
 
@@ -97,7 +97,7 @@ class GameTest extends org.scalatest.wordspec.AnyWordSpec {
 
     "long game" in new mocks {
       override val inQueue: mutable.Queue[String] = mutable.Queue(Range(1, 1000002).map(_.toString): _*)
-      val expectedOut: List[String] = List.fill(1000000)(List("ask", "big")).flatten :+ "ask" :+ "guessed"
+      val expectedOut: List[String]               = List.fill(1000000)(List("ask", "big")).flatten :+ "ask" :+ "guessed"
 
       new Game(testController).play(1000001)
 
