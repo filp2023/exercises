@@ -34,3 +34,4 @@ lazy val exercises05 = project in file("exercises05") settings (libraryDependenc
 lazy val lection02 = project in file("lection02") settings (libraryDependencies ++= libraries)
 lazy val lection03 = project in file("lection03") settings (libraryDependencies ++= libraries)
 lazy val lection04 = project in file("lection04") settings (libraryDependencies ++= libraries)
+lazy val lection05 = project in file("lection05") settings (libraryDependencies ++= libraries)
