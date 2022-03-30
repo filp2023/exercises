@@ -47,3 +47,9 @@ lazy val lection03 = project in file("lection03") settings (libraryDependencies 
 lazy val lection04 = project in file("lection04") settings (libraryDependencies ++= libraries)
 lazy val lection05 = project in file("lection05") settings (libraryDependencies ++= libraries)
 lazy val lection06 = project in file("lection06") settings (libraryDependencies ++= libraries)
+lazy val lection07 = project in file("lection07") settings {
+  libraryDependencies ++= libraries
+} settings {
+  scalacOptions ++= Seq("-feature", "-language:implicitConversions", "-Xfatal-warnings")
+  addCompilerPlugin(kindProjectorDep)
+}

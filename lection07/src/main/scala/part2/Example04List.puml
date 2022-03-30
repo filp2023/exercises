@@ -1,0 +1,40 @@
+@startuml
+object "Cons" as cb1  {
+  a1
+}
+
+object "Cons" as cb2  {
+  a2
+}
+
+object "Cons" as cb3  {
+  a3
+}
+
+object "Nil" as nb
+
+cb1 -> cb2
+cb2 -> cb3
+cb3 -> nb
+
+object "Cons" as ca1  {
+  f(a1)
+}
+
+object "Cons" as ca2  {
+  f(a2)
+}
+
+object "Cons" as ca3  {
+  f(a3)
+}
+
+object "Nil" as na
+
+ca1 -> ca2
+ca2 -> ca3
+ca3 -> na
+
+cb1 --> ca1: map(f)
+
+@enduml

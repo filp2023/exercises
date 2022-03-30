@@ -1,0 +1,32 @@
+@startuml
+  interface Vehicle {
+    def drive(destination: String): Unit
+  }
+
+  class Car {
+    private var fuel: Int = 0
+
+    override def drive(destination: String): Unit = ???
+
+    def fillFuelTank(): Unit = ???
+  }
+
+  interface CargoContainer {
+    def load(cargo: String): Unit
+    def unload(): String
+  }
+
+  class PickupTruck {
+    private var cargo: Option[String] = None
+
+    override def load(cargo: String): Unit = ???
+
+    override def unload(): String = ???
+  }
+
+  Car <|-- PickupTruck: extends
+  Car .|> Vehicle: implements
+  PickupTruck .|> CargoContainer: implements
+
+
+@enduml

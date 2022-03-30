@@ -1,0 +1,48 @@
+@startuml
+  together {
+      class Package {
+        val stuff: String
+      }
+
+      entity packageSemigroup {
+        def combine(x: Package, y: Package): Package =
+          Package(x.stuff + ", " + y.stuff)
+      }
+
+
+      interface Semigroup<A> {
+        def combine(x: A, y: A): A
+      }
+  }
+
+  together {
+      class Int
+
+      entity intMonoid {
+        def empty(): Int = 0
+        def combine(x: Int, y: Int): Int = x + y
+      }
+
+      interface Monoid<A> {
+        def empty(): A
+      }
+  }
+
+
+  Package . packageSemigroup: evidence
+  packageSemigroup .|> Semigroup: instance
+
+  Int . intMonoid: evidence
+  intMonoid .|> Monoid: instance
+
+  Semigroup <|-- Monoid: extends
+
+
+
+
+
+
+
+
+
+@enduml

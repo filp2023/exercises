@@ -1,0 +1,27 @@
+@startuml
+  interface Vehicle {
+    def drive(destination: String): Unit
+  }
+
+  interface CargoContainer {
+    def load(cargo: String): Unit
+    def unload(): String
+  }
+
+  interface Car {
+    def drive(destination: String): Unit
+    def fillFuelTank(): Unit
+  }
+
+  interface PickupTruck {
+    def drive(destination: String): Unit
+    def fillFuelTank(): Unit
+    def load(cargo: String): Unit
+    def unload(): String
+  }
+
+  Car <|.. PickupTruck: extends
+  Car .|> Vehicle: extends
+  PickupTruck .|> CargoContainer: extends
+
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+object "None" as nb
+object "Some" as sb  {
+  a
+}
+
+object "None" as na
+object "Some" as sa {
+  f(a)
+}
+
+nb --> na: map(f)
+sb --> sa: map(f)
+
+
+@enduml

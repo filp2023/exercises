@@ -1,0 +1,44 @@
+@startuml
+object "None" as left1
+object "None" as right1
+diamond product1
+object "None" as result1
+left1 --> product1
+right1 --> product1
+product1 --> result1
+
+object "Some" as left2 {
+  a1
+}
+object "None" as right2
+diamond product2
+object "None" as result2
+left2 --> product2
+right2 --> product2
+product2 --> result2
+
+object "None" as left3
+object "Some" as right3 {
+  a2
+}
+diamond product3
+object "None" as result3
+left3 --> product3
+right3 --> product3
+product3 --> result3
+
+object "Some" as left4 {
+  a1
+}
+object "Some" as right4 {
+  a2
+}
+diamond product4
+object "Some" as result4 {
+  (a1, a2)
+}
+left4 --> product4
+right4 --> product4
+product4 --> result4
+
+@enduml

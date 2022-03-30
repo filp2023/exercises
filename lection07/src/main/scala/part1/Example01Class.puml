@@ -1,0 +1,26 @@
+@startuml
+  class Car {
+    var fuel: Int = 0
+
+    def drive(destination: String): Unit = ???
+
+    def fillFuelTank(): Unit = ???
+  }
+
+  class PickupTruck {
+    var fuel: Int = 0
+
+    var cargo: Option[String] = None
+
+    def drive(destination: String): Unit = ???
+
+    def fillFuelTank(): Unit = ???
+
+    def load(cargo: String): Unit = ???
+
+    def unload(): String = ???
+  }
+
+  Car <|-- PickupTruck: extends
+
+@enduml
