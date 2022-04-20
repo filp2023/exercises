@@ -53,6 +53,12 @@ lazy val exercises09 = project in file("exercises09") settings {
   scalacOptions ++= Seq("-feature", "-language:implicitConversions", "-Xfatal-warnings")
   addCompilerPlugin(kindProjectorDep)
 }
+lazy val exercises10 = project in file("exercises10") settings {
+  libraryDependencies ++= libraries :+ "org.typelevel" %% "cats-effect" % "2.4.1"
+} settings {
+  scalacOptions ++= Seq("-feature", "-language:implicitConversions", "-Xfatal-warnings")
+  addCompilerPlugin(kindProjectorDep)
+}
 
 lazy val lection02 = project in file("lection02") settings (libraryDependencies ++= libraries)
 lazy val lection03 = project in file("lection03") settings (libraryDependencies ++= libraries)
