@@ -11,7 +11,7 @@ object Run extends IOApp {
 
   def run(args: List[String]): IO[ExitCode] =
     for {
-      res <- crawler.crawl(URL("https://filp.ulanzetz.com/exercises10"))
+      res <- crawler.crawl(URL("http://filp.ulanzetz.com/exercises10"))
       _   <- IO.delay(println(res))
     } yield ExitCode.Success
 }
