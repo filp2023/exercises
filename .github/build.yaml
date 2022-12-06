@@ -1,0 +1,28 @@
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  test:
+    name: Run Tests and Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+          check-latest: true
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.sbt
+            ~/.ivy2/cache
+            ~/.coursier/cache/v1
+            ~/.cache/coursier/v1
+          key: ${{ runner.os }}-sbt-cache-v2-${{ hashFiles('**/*.sbt') }}-${{ hashFiles('project/build.properties') }}
+      - name: Test and Lint
+          run: |
+            chmod +x ./.github/run.sh
+            ./.github/run.sh
+          shell: bash
